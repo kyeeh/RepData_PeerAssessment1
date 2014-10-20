@@ -67,7 +67,7 @@ ggplot(sbd,aes(x=steps)) + geom_histogram(binwidth = 3000, colour = "black",
   y="Frequency")
 ```
 
-![plot of chunk unnamed-chunk-4](./PA1_template_files/figure-html/unnamed-chunk-4.png) 
+![plot of chunk steps_by_day](./PA1_template_files/figure-html/steps_by_day.png) 
 
 Now, let's calculate the mean and median for this data set:
 
@@ -93,7 +93,7 @@ ggplot(sbi,aes(x = interval, y = steps)) + geom_line(colour = "orange") +
     y = "Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-6](./PA1_template_files/figure-html/unnamed-chunk-6.png) 
+![plot of chunk steps_by_intervale](./PA1_template_files/figure-html/steps_by_intervale.png) 
 
 Now, let's calculate the 5-minute interval that contains the maximum
 number of steps:
@@ -158,7 +158,7 @@ ggplot(sbd_filled,aes(x=steps)) + geom_histogram(binwidth = 3000,
   x="Number of Steeps", y="Frequency")
 ```
 
-![plot of chunk unnamed-chunk-11](./PA1_template_files/figure-html/unnamed-chunk-11.png) 
+![plot of chunk steps_by_date_filled](./PA1_template_files/figure-html/steps_by_date_filled.png) 
 
 Now, let's calculate the mean and median for this data set:
 
@@ -218,6 +218,6 @@ ggplot(data_week, aes(x = interval, y = steps)) + geom_line(colour = "orange") +
   facet_grid(day ~ .) + labs(x = "Interval", y = "Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-15](./PA1_template_files/figure-html/unnamed-chunk-15.png) 
+![plot of chunk plot_week_data](./PA1_template_files/figure-html/plot_week_data.png) 
 
-We can observe that activity on weekends tends to be more than activity on weekdays. This could be due to people spend work hours at office sitted the mayor of the time instead of weekends where the people make several activities in several spaces.
+We can observe that activity on weekends tends to be more than activity on weekdays. This could be due to people spend work hours at office sitted the mayor of the time instead of weekends where the people make several activities in several spacesT.
