@@ -15,7 +15,6 @@ This actions are required to perform the markdown document:
 
 
 ```r
-setwd("~/Documents/Coursera/dss/5.- Reproducible Research/Projects/RepData_PeerAssessment1")
 library(ggplot2)
 library(knitr)
 library(plyr)
@@ -30,7 +29,6 @@ observations using the following code:
 
 
 ```r
-setwd("~/Documents/Coursera/dss/5.- Reproducible Research/Projects/RepData_PeerAssessment1")
 data <- read.csv("data/activity.csv", na.strings = 'NA')
 ```
 
@@ -67,7 +65,7 @@ ggplot(sbd,aes(x=steps)) + geom_histogram(binwidth = 3000, colour = "black",
   y="Frequency")
 ```
 
-![plot of chunk steps_by_day](./PA1_template_files/figure-html/steps_by_day.png) 
+![](./PA1_template_files/figure-html/steps_by_day-1.png) 
 
 Now, let's calculate the mean and median for this data set:
 
@@ -93,7 +91,7 @@ ggplot(sbi,aes(x = interval, y = steps)) + geom_line(colour = "orange") +
     y = "Number of steps")
 ```
 
-![plot of chunk steps_by_intervale](./PA1_template_files/figure-html/steps_by_intervale.png) 
+![](./PA1_template_files/figure-html/steps_by_intervale-1.png) 
 
 Now, let's calculate the 5-minute interval that contains the maximum
 number of steps:
@@ -110,8 +108,7 @@ With the folowing results:
 
 #### 1. Total number of missing values:
 
-Let's calculate missing values for steps with `is.na()` method to check whether
-the value is mising in the steps vector.
+Let's calculate the total missing values of steps with `is.na()` method.
 
 
 ```r
@@ -136,8 +133,8 @@ data_filled <- adply(data, 1, function(x) if (is.na(x$steps)) {
 })
 ```
 
-In order to validate that everythin is ok, let's check if there any missing 
-values remaining or not:
+In order to validate that everything is ok, let's check if there are  
+missing values or not:
 
 ```r
 sum(is.na(data_filled$steps))
@@ -158,7 +155,7 @@ ggplot(sbd_filled,aes(x=steps)) + geom_histogram(binwidth = 3000,
   x="Number of Steeps", y="Frequency")
 ```
 
-![plot of chunk steps_by_date_filled](./PA1_template_files/figure-html/steps_by_date_filled.png) 
+![](./PA1_template_files/figure-html/steps_by_date_filled-1.png) 
 
 Now, let's calculate the mean and median for this data set:
 
@@ -180,7 +177,7 @@ Current Median = **10765**
 **What is the impact of imputing missing data on the estimates of the total 
 daily number of steps?**
 
-Comparing both histograms we observe t-student distribution differenced by an 
+Comparing both histograms we observe t-student distribution is differenced by an 
 increasment in the max value or peak, after populate the data in this exercise.
 
 ### Are there differences in activity patterns between weekdays and weekends?
@@ -188,8 +185,8 @@ increasment in the max value or peak, after populate the data in this exercise.
 The dataset with the filled-in missing values will be usedfor this part. To do 
 this comparison let's follow the next steps:
 
-1. Create a new factor variable in the dataset with two levels – “weekday” and 
-“weekend” subsetting the data by weekday or weekend day.
+1. Create a new factor variable in the dataset with two levels subsetting the 
+data by weekday and weekend day.
 
 ```r
 sbd_filled <- aggregate(steps ~ date + interval, data = data_filled, FUN=sum)
@@ -218,6 +215,9 @@ ggplot(data_week, aes(x = interval, y = steps)) + geom_line(colour = "orange") +
   facet_grid(day ~ .) + labs(x = "Interval", y = "Number of steps")
 ```
 
-![plot of chunk plot_week_data](./PA1_template_files/figure-html/plot_week_data.png) 
+![](./PA1_template_files/figure-html/plot_week_data-1.png) 
 
-We can observe that activity on weekends tends to be more than activity on weekdays. This could be due to people spend work hours at office sitted the mayor of the time instead of weekends where the people make several activities in several spacesT.
+We can observe that activity on weekends tends to be higher than activity on 
+weekdays. This could be due to people spend work hours at office sitted the 
+mayor of the time instead of weekends where the people make several activities 
+in several spaces.

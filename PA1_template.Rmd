@@ -19,7 +19,6 @@ This actions are required to perform the markdown document:
 3. Define Markdown options for this document.
 
 ```{r preparing_environment}
-setwd("~/Documents/Coursera/dss/5.- Reproducible Research/Projects/RepData_PeerAssessment1")
 library(ggplot2)
 library(knitr)
 library(plyr)
@@ -33,7 +32,6 @@ working directory is defined as well. Preprocessing consists in remove `NA`
 observations using the following code: 
 
 ```{r Data_oading}
-setwd("~/Documents/Coursera/dss/5.- Reproducible Research/Projects/RepData_PeerAssessment1")
 data <- read.csv("data/activity.csv", na.strings = 'NA')
 ```
 
@@ -91,8 +89,7 @@ With the folowing results:
 
 #### 1. Total number of missing values:
 
-Let's calculate missing values for steps with `is.na()` method to check whether
-the value is mising in the steps vector.
+Let's calculate the total missing values of steps with `is.na()` method.
 
 ```{r missing_values}
 mv <- sum(is.na(data$steps))
@@ -115,8 +112,8 @@ data_filled <- adply(data, 1, function(x) if (is.na(x$steps)) {
 })
 ```
 
-In order to validate that everythin is ok, let's check if there any missing 
-values remaining or not:
+In order to validate that everything is ok, let's check if there are  
+missing values or not:
 ```{r data_filled_summary}
 sum(is.na(data_filled$steps))
 ```
@@ -150,7 +147,7 @@ Current Median = **`r format(md,digits = 8)`**
 **What is the impact of imputing missing data on the estimates of the total 
 daily number of steps?**
 
-Comparing both histograms we observe t-student distribution differenced by an 
+Comparing both histograms we observe t-student distribution is differenced by an 
 increasment in the max value or peak, after populate the data in this exercise.
 
 ### Are there differences in activity patterns between weekdays and weekends?
@@ -158,8 +155,8 @@ increasment in the max value or peak, after populate the data in this exercise.
 The dataset with the filled-in missing values will be usedfor this part. To do 
 this comparison let's follow the next steps:
 
-1. Create a new factor variable in the dataset with two levels – “weekday” and 
-“weekend” subsetting the data by weekday or weekend day.
+1. Create a new factor variable in the dataset with two levels subsetting the 
+data by weekday and weekend day.
 ```{r steps_by_day_filled}
 sbd_filled <- aggregate(steps ~ date + interval, data = data_filled, FUN=sum)
 data_weekend <- subset(sbd_filled, weekdays(as.Date(date)) %in% c("Saturday", "Sunday"))
@@ -185,4 +182,7 @@ ggplot(data_week, aes(x = interval, y = steps)) + geom_line(colour = "orange") +
   facet_grid(day ~ .) + labs(x = "Interval", y = "Number of steps")
 ```
 
-We can observe that activity on weekends tends to be more than activity on weekdays. This could be due to people spend work hours at office sitted the mayor of the time instead of weekends where the people make several activities in several spaces.
+We can observe that activity on weekends tends to be higher than activity on 
+weekdays. This could be due to people spend work hours at office sitted the 
+mayor of the time instead of weekends where the people make several activities 
+in several spaces.
